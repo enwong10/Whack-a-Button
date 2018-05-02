@@ -1,0 +1,29 @@
+﻿<Window x:Class="Whack_a_Button.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Whack_a_Button"
+        mc:Ignorable="d"
+        Title="Whack-a-Button" Height="600" Width="750" Background="White">
+
+    <Window.Resources>
+        <local:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Height="500" Width="650">
+        <TextBlock Text="Whack-a-Button" Background="Black" Foreground="White" FontFamily="Calibri" FontSize="36" TextAlignment="Center" Margin="0,100,0,0"  Visibility="{Binding startVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}"/>
+        <TextBlock Text="Timer:" Background="Black" Foreground="White" FontFamily="Calibri" FontSize="16" TextAlignment="Center" Visibility="{Binding startVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Margin="359,403,0,0"/>
+        <TextBox Text="{Binding time, Mode=TwoWay}" Background="LightGoldenrodYellow" Opacity="0.8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="25" Width="40" Visibility="{Binding startVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Margin="533,385,72,61" />
+        <Button Height="75" Width="200" Content="Start" Background="SteelBlue" Opacity="0.75" Visibility="{Binding startVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Command="{Binding StartCommand}" HorizontalAlignment="Center" Margin="0,200,0,195"/>
+        
+        <Button Name="ClickButton" Height="25" Width="25" Background="{Binding buttonColour}" Margin="{Binding margin}" Opacity="0.8" Visibility="{Binding buttonVisible, Converter={StaticResource BoolVisibilityConverter}}" Command="{Binding ButtonCommand}"/>
+        <Button Height="25" Width="25" Background="Red" Margin="{Binding otherMargin}" Opacity="0.8" Visibility="{Binding buttonVisible, Converter={StaticResource BoolVisibilityConverter}}" Command="{Binding FakeCommand}"/>
+
+        <TextBlock Text="TIME'S UP!" Background="Black" Foreground="White" FontFamily="Calibri" FontSize="24" TextAlignment="Center" Margin="0,156,0,0"  Visibility="{Binding exitVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}"/>
+        <TextBlock Text="{Binding points}" Foreground="Snow" Visibility="{Binding exitVisible, Converter= {StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Margin="0,198,0,169" FontFamily="Calibri" FontSize="24" TextAlignment="Center"/>
+        <TextBlock Text="{Binding finalTime}" Foreground="Snow" Visibility="{Binding exitVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Margin="0,238,0,0" TextAlignment="Center"/>
+        <TextBlock Text="{Binding pointsPerSec}" Foreground="Snow" Visibility="{Binding exitVisible, Converter={StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Margin="0,268,0,0" TextAlignment="Center"/>
+        <Button Name="Exit" Content="Exit" Background="Pink" Opacity="0.8" Height="50" Width="200" Visibility="{Binding exitVisible, Converter= {StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Command="{Binding ExitCommand}" Margin="329,314,113,80" />
+        <Button Name="Retry" Content="Retry" Background="LightGreen" Opacity="0.75" Height="50" Width="200" Visibility="{Binding exitVisible, Converter= {StaticResource BoolVisibilityConverter}, Mode=TwoWay}" Command="{Binding RetryCommand}" Margin="113,314,329,80"/>
+    </Grid>
+</Window>
